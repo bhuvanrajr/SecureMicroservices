@@ -48,7 +48,7 @@ namespace Movies.Client
             services.AddTransient<AuthenticationDelegatingHandler>();
             services.AddHttpClient("MoviesAPIClient", client =>
             {
-                client.BaseAddress = new System.Uri("https://localhost:5001/");
+                client.BaseAddress = new System.Uri("https://localhost:5010/");
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Add(HeaderNames.Accept, "applicaiton/json");
 

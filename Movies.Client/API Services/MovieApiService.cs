@@ -66,7 +66,7 @@ namespace Movies.Client.API_Services
 
             var client = _httpClientFactory.CreateClient("MoviesAPIClient");
 
-            var result = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, "/api/movies/"));
+            var result = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, "/movies"));
             result.EnsureSuccessStatusCode();
             var content = await result.Content.ReadAsStringAsync();
 
