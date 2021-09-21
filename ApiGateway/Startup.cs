@@ -34,7 +34,7 @@ namespace ApiGateway
             services.AddAuthentication()
                 .AddJwtBearer("IdentityApiKey", options =>
                 {
-                    options.Authority = "https://localhost:5005"; // IDENTITY SERVER URL
+                    options.Authority = Configuration.GetValue<string>("IDPEndpoint"); // IDENTITY SERVER URL
                                                                   //x.RequireHttpsMetadata = false;
                     options.TokenValidationParameters = new TokenValidationParameters
                     {

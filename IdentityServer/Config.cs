@@ -2,6 +2,7 @@
 using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,11 +43,11 @@ namespace IdentityServer
                     AllowRememberConsent = false,
                     RedirectUris = new List<string>
                     {
-                        "https://localhost:5002/signin-oidc"
+                         $"{Startup.StaticConfig.GetValue<string>("MovieClient")}/signin-oidc"
                     },
                     PostLogoutRedirectUris = new List<string>
                     {
-                        "https://localhost:5002/signout-callback-oidc"
+                        $"{Startup.StaticConfig.GetValue<string>("MovieClient")}/signout-callback-oidc"
                     }
                 }
             };

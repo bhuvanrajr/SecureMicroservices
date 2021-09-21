@@ -35,7 +35,7 @@ namespace Movies.Client
             .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
             {
-                options.Authority = "https://localhost:5005";
+                options.Authority = Configuration.GetValue<string>("IDPEndpoint");
                 options.ClientId = "movies_mvc_Client";
                 options.ClientSecret = "secret";
                 options.SaveTokens = true;
@@ -48,7 +48,7 @@ namespace Movies.Client
             services.AddTransient<AuthenticationDelegatingHandler>();
             services.AddHttpClient("MoviesAPIClient", client =>
             {
-                client.BaseAddress = new System.Uri("https://localhost:5010/");
+                client.BaseAddress = new System.Uri(Configuration.GetValue<string>("APIGatewayEndpoint"));
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Add(HeaderNames.Accept, "applicaiton/json");
 
@@ -56,14 +56,14 @@ namespace Movies.Client
 
             services.AddHttpClient("IDPClient", client =>
             {
-                client.BaseAddress = new System.Uri("https://localhost:5005");
+                client.BaseAddress = new System.Uri(Configuration.GetValue<string>("IDPEndpoint"));
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
             });
 
             services.AddSingleton(new ClientCredentialsTokenRequest
             {
-                Address = "https://localhost:5005/connect/token",
+                Address = $"{Configuration.GetValue<string>("IDPEndpoint")}/connect/token",
                 ClientId = "movieClient",
                 ClientSecret = "secret",
                 Scope = "movieAPI"

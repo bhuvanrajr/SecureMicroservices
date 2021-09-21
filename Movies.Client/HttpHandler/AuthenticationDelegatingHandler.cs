@@ -31,6 +31,6 @@ namespace Movies.Client.HttpHandler
             request.SetBearerToken(tokenResponse.AccessToken);
 
             return await base.SendAsync(request, cancellationToken);
-        }
+        }                   
     }
 }

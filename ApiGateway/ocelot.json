@@ -5,8 +5,8 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": "5001"
+          "Host": "moviesapi20210921162114.azurewebsites.net",
+          "Port": "443"
         }
       ],
       "UpstreamPathTemplate": "/movies",
